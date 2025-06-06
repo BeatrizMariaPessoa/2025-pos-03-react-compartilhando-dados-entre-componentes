@@ -4,7 +4,7 @@ import type React from "react";
 
 import { useEffect, useState } from "react";
 import dados, { TarefaInterface } from "@/data";
-import Cabecalho from "@/componentes/Cabecalhot";
+import Cabecalho from "@/componentes/Cabecalho.tsx";
 
 interface TarefaProps {
 	titulo: string;
