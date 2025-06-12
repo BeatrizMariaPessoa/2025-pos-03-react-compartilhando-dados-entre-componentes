@@ -1,10 +1,14 @@
 "use client";
-
 import type React from "react";
 
 import { useEffect, useState } from "react";
 import dados, { TarefaInterface } from "@/data";
 import Cabecalho from "@/componentes/Cabecalho.tsx";
+
+
+
+import ModalTarefa from "@/componentes/ModalTarefa";
+
 
 interface TarefaProps {
 	titulo: string;
@@ -56,12 +60,15 @@ const Tarefas: React.FC<TareafasProps> = ({ dados }) => {
 };
 
 const Home = () => {
+	const [mostrarModal, setMostrarModal] = useState(false);
 	const tarefas: TarefaInterface[] = dados;
 
 	return (
 		<div className="container mx-auto p-4">
 			<Cabecalho />
 			<Tarefas dados={tarefas} />
+			<button onClick={() => setMostrarModal(true)}>Adicionar Tarefa</button>
+			{mostrarModal && <ModalTarefa onClose={() => setMostrarModal(false)} />}
 		</div>
 	);
 };
