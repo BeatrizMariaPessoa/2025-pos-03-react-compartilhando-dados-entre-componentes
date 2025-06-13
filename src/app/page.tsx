@@ -3,10 +3,7 @@ import type React from "react";
 
 import { useEffect, useState } from "react";
 import dados, { TarefaInterface } from "@/data";
-import Cabecalho from "@/componentes/Cabecalho.tsx";
-
-
-
+import Cabecalho from "@/componentes/Cabecalho";
 import ModalTarefa from "@/componentes/ModalTarefa";
 
 
@@ -61,14 +58,14 @@ const Tarefas: React.FC<TareafasProps> = ({ dados }) => {
 
 const Home = () => {
 	const [mostrarModal, setMostrarModal] = useState(false);
-	const tarefas: TarefaInterface[] = dados;
+	const [tarefas, setTarefas] = useState<TarefaInterface[]>(dados)
 
 	return (
 		<div className="container mx-auto p-4">
 			<Cabecalho />
+			<button className="mb-1 bg-gray-600 text-white p-2 font-semibold rounded-lg" onClick={() => setMostrarModal(true)}>Adicionar Tarefa +</button>
+			{mostrarModal && <ModalTarefa tarefas={tarefas} setTarefas={setTarefas} onClose={() => setMostrarModal(false)} />}
 			<Tarefas dados={tarefas} />
-			<button onClick={() => setMostrarModal(true)}>Adicionar Tarefa</button>
-			{mostrarModal && <ModalTarefa onClose={() => setMostrarModal(false)} />}
 		</div>
 	);
 };
