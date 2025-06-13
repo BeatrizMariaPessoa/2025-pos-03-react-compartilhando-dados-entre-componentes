@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import dados, { TarefaInterface } from "@/data";
 
-
+let nextId = 1;
 interface ModalTarefaProps{
   onClose: () => void;
 }
@@ -20,7 +20,7 @@ export default function ModalTarefa({ onClose }: ModalTarefaProps) {
       <button onClick={() => {
         setTarefas([
           ...tarefas,
-          { id: nextId++, title: titulo }
+          { id: nextId++, title: titulo, completed: false }
         ]);
       }}>Add</button>
       <button onClick={onClose}>Fechar</button>
